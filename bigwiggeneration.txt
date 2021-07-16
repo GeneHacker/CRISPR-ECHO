@@ -1,3 +1,8 @@
+#This code to create a bigwig file *.bw from a *.fastq.gz source file...
+#These are basic options.
+#It requires bowtie2, samtools, bedtools, and bedGraphToBigWig from http://hgdownload.cse.ucsc.edu/admin/exe/.
+
+#These assume 8 cores.
 bowtie2 --threads 8 -x genomes/hg38 -U file.fastq.gz -S file.sam
 samtools sort -@ 8 -O bam -o file.bam file.sam
 samtools index file.bam
