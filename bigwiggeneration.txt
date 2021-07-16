@@ -1,0 +1,6 @@
+bowtie2 --threads 8 -x genomes/hg38 -U file.fastq.gz -S file.sam
+samtools sort -@ 8 -O bam -o file.bam file.sam
+samtools index file.bam
+bedtools bamtobed -i file.bam > file.bed
+bedtools genomecov -i file.bed -g hg38.chrom.sizes -bg > file.cov
+bedGraphToBigWig file.cov hg38.chrom.sizes file.bw
